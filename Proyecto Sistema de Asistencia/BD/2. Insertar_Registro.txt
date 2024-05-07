@@ -1,0 +1,37 @@
+--1. Se inserta los roles
+INSERT INTO dbo.TB_ROLES
+(
+    Descripcion,
+    Fecha_Creacion_Registro,
+    Estado
+)
+VALUES
+('Administrador', DEFAULT, 1),
+('Practicante', DEFAULT, DEFAULT)
+GO
+
+--2. Se inserta el primer Usuario Admin
+INSERT INTO dbo.TB_USUARIO
+(
+    Nombres,
+    Apellidos,
+    Celular,
+    Correo,
+    Contrasenia,
+    Id_Rol,
+    Imagen,
+    Fecha_Creacion_Registro,
+    Estado
+)
+VALUES
+(   'Administrador',    -- Nombres - varchar(50)
+    'General',    -- Apellidos - varchar(50)
+    '987654321',
+    'adming@gmail.com',    -- Correo - varchar(100)
+    ENCRYPTBYPASSPHRASE('contrasenia','11111111'),    -- Contrasenia - varbinary(255)
+    1,       -- Id_Rol - int
+    NULL,    -- Imagen - varchar(max)
+    DEFAULT, -- Fecha_Creacion_Registro - datetime
+    DEFAULT  -- Estado - bit
+)
+GO

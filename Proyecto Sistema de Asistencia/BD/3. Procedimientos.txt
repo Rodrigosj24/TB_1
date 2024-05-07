@@ -1,0 +1,143 @@
+--1. Crear Sp para listar roles
+CREATE PROCEDURE SP_Listar_Roles
+AS
+BEGIN
+SELECT * FROM dbo.TB_ROLES
+WHERE Estado = 1
+END
+GO
+
+--2. CREAR SP PARA LOGUEARTE
+CREATE PROCEDURE SP_OBTENER_DATOS_USUARIO_LOGIN
+@Correo VARCHAR(100),
+@Contrasenia VARCHAR(100)
+
+AS
+BEGIN
+
+SELECT Id_Usuario,(Nombres +' ' + Apellidos) Nombres_Completos , Celular, Correo, Id_Rol, Imagen 
+FROM dbo.TB_USUARIO
+WHERE Correo = @Correo AND CONVERT(VARCHAR(50), DECRYPTBYPASSPHRASE('contrasenia',CONTRASENIA)) = @Contrasenia
+AND Estado = 1
+END
+
+GO
+
+--3. CREAR SP PARA BUSCAR USUARIO
+CREATE PROCEDURE SP_OBTENER_DATOS_USUARIO
+@Correo VARCHAR(100)
+
+AS
+BEGIN
+
+SELECT Id_Usuario,(Nombres +' ' + Apellidos) Nombres_Completos , Celular, Correo, Id_Rol, Imagen, Estado 
+FROM dbo.TB_USUARIO
+WHERE Correo = @Correo 
+AND Estado = 1
+END
+
+GO
+
+--4. CREAR SP PARA LISTAR TODOS LOS USUARIOS
+CREATE PROCEDURE SP_Listar_Usuarios
+
+AS
+BEGIN
+
+SELECT Id_Usuario,(Nombres +' ' + Apellidos) Nombres_Completos , Celular, Correo, A.Id_Rol, B.Descripcion AS Rol, a.Estado,
+CASE WHEN A.Estado = 1 THEN 'Activo' ELSE 'No Activo' END Descripcion_Estado
+FROM dbo.TB_USUARIO A
+INNER JOIN dbo.TB_ROLES B
+ON A.Id_Rol = B.Id_Rol
+
+END
+
+GO
+
+--5. CREAR SP PARA ELIMINAR O DESAHABILITAR USUARIO
+CREATE PROCEDURE SP_DESAHABILITAR_USUARIOS
+@Correo VARCHAR(100)
+AS
+BEGIN
+UPDATE dbo.TB_USUARIO
+SET Estado = 0
+WHERE Correo = @Correo AND Estado = 1
+END
+GO
+
+--6. CREAR SP PARA REGISTRAR USUARIO
+CREATE PROCEDURE SP_Registrar_Usuarios
+@Nombres VARCHAR(50),
+@Apellidos VARCHAR(50),
+@Celular VARCHAR(12),
+@Correo VARCHAR(100),
+@Contrasenia VARCHAR(100),
+@Id_Rol INT, 
+@Imagen VARCHAR(max)
+AS
+BEGIN
+INSERT INTO dbo.TB_USUARIO
+(
+    Nombres,
+    Apellidos,
+    Celular,
+    Correo,
+    Contrasenia,
+    Id_Rol,
+    Imagen,
+    Fecha_Creacion_Registro,
+    Estado
+)
+VALUES
+(@Nombres, @Apellidos, @Celular, @Correo, ENCRYPTBYPASSPHRASE('contrasenia',@Contrasenia), @Id_Rol, @Imagen, DEFAULT, DEFAULT)
+
+END
+GO
+
+--7. CREAR SP PARA REGISTRAR EL INICIO DE ASISTENCIA
+CREATE PROCEDURE SP_Registrar_Inicio_Asistencia
+@Id_Usuario INT,
+@Fecha_Inicio DATETIME
+AS
+BEGIN
+INSERT INTO dbo.TB_ASISTENCIA
+(
+    Id_Usuario,
+    Fecha_Inicio,
+    Fecha_Fin,
+    flag_Asistencia
+)
+VALUES
+(@Id_Usuario, GETDATE(), NULL, DEFAULT)
+
+END
+GO
+
+--8. CREAR SP PARA REGISTRAR EL FIN DE ASISTENCIA
+CREATE PROCEDURE SP_Registrar_Fin_Asistencia
+@Id_Usuario INT,
+@Fecha_Fin DATETIME
+AS
+BEGIN
+UPDATE dbo.TB_ASISTENCIA
+SET Fecha_Fin = GETDATE(), flag_Asistencia = 1
+WHERE Id_Usuario = @Id_Usuario 
+  AND Fecha_Inicio = (SELECT MAX(Fecha_Inicio)Fecha_Inicio FROM dbo.TB_ASISTENCIA WHERE Id_Usuario = @Id_Usuario )
+
+END
+GO
+
+--9. CREAR SP PARA OBTNER TODOS LOS USUARIOS
+CREATE PROCEDURE SP_OBTENER_DATOS_USUARIO_GENERAL
+@Correo VARCHAR(100)
+
+AS
+BEGIN
+
+SELECT Id_Usuario,(Nombres +' ' + Apellidos) Nombres_Completos , Celular, Correo, Id_Rol, Imagen, Estado 
+FROM dbo.TB_USUARIO
+WHERE Correo = @Correo 
+AND Estado IN (0,1)
+END
+
+GO

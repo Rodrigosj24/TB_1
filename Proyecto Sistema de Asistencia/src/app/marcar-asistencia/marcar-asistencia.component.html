@@ -1,0 +1,34 @@
+<div class="content">
+  <div class="first">
+
+    <span style="width: 250px; font-weight: 600; text-align: center;">Hola! tu presencia aquí</span>
+    <span style="width: 250px; font-weight: 600; text-align: center;">nos alegra el día 🥰</span>
+
+    <button mat-stroked-button class="button green" (click)="init()" [disabled]="!btnIniciar">Iniciar
+      Turno</button>
+    <button mat-stroked-button class="button black" (click)="finalizar()" [disabled]="!btnFinalizar">Finalizar
+      Turno</button>
+  </div>
+  <div style="display: flex; flex-direction: column;">
+    <span style=" font-weight: 600; text-align: center; font-size: 15px; width: 100%;">Hoy {{fecha
+      }}</span>
+    <mat-card class="example-card" style="background-color:   rgb(216, 218, 220);">
+
+      <mat-card-content
+        style="display: flex;justify-content: center;flex-direction: column;padding: 20px; align-items: center;">
+        <div style="display: flex;padding: 20px 0; text-align: center; font-size: 15px; "><span
+            class="titletiempo">Tiempo transcurrido: </span>
+          <span class="hora">{{horaView}}</span>
+        </div>
+        <div style="display: flex;padding: 20px 0; text-align: center; font-size: 15px;"><span class="titletiempo">Tu
+            turno finaliza en:</span>
+          <span class="hora">{{horaFinal}}</span>
+        </div>
+
+
+      </mat-card-content>
+
+
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container1">
+  <div class="content">
+    <div style="display: flex;align-items: center;">
+      <img src="assets/ulima.png" style="width: 40px;">
+      <p style="font-weight: bold; font-size: 23px;">
+        Sistema de Asistencia Organizacional
+      </p>
+    </div>
+
+    <mat-card class="example-card">
+      <mat-card-header style="font-size: 15px;font-weight: bold;">
+
+        <span style="letter-spacing: -0.3px; padding-left: 2rem;">Inicio de sesión</span>
+        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-content style="display: flex;justify-content: center;">
+        <form [formGroup]="formLogin">
+          <div class="temp">
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Dirección de correo Corporativo</mat-label>
+              <input matInput formControlName="email" type="email">
+              <mat-icon matSuffix>email</mat-icon>
+
+            </mat-form-field>
+          </div>
+
+
+          <div class="temp">
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Ingresa tu clave secreta</mat-label>
+              <input matInput formControlName="password" [type]="mostrarContrasena ? 'text' : 'password'">
+              <mat-icon matSuffix (click)="mostrarContrasena = !mostrarContrasena" style="cursor: pointer;">
+                {{ mostrarContrasena ? 'visibility' : 'visibility_off' }}
+              </mat-icon>
+
+
+            </mat-form-field>
+          </div>
+
+          <strong style="font-size: 12px;padding-left: 5px;">¿Olvidaste tu contraseña?<span
+              style="color: blue;cursor: pointer;">Solicitar
+              código</span></strong>
+
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions style="display: flex;justify-content: center;">
+
+        <button mat-stroked-button (click)="login()" class="button">Ingresar</button>
+
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+
+</div>

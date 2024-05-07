@@ -1,0 +1,24 @@
+.modalContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .exitosoIcon {
+    color: green; /* Color del icono (verde en este caso) */
+    font-size: 50px; /* Tamaño del icono (grande) */
+    padding: 30px; /* Espaciado alrededor del icono */
+    display: block; /* Hace que el icono se muestre como un bloque */
+    margin: 0 auto; /* Centra el icono horizontalmente */
+  }
+  
+  .btnSuccess{
+    background-color: green;
+    color:#ffffff;
+    padding: 15px;
+  }
+  strong {
+    color: #0d0d0e; /* Cambia el color del texto en negrita */
+    font-size: 18px; /* Ajusta el tamaño de la fuente del texto en negrita */
+  }
+  

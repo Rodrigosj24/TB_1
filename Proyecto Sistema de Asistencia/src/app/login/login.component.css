@@ -1,0 +1,53 @@
+.example-card {
+  max-width: 500px;
+}
+.container1{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-image: url('https://cdn.elearningindustry.com/wp-content/uploads/2018/04/6-creative-employee-training-methods-and-techniques-to-try-today.jpg');
+}
+.input{
+  min-width: 300px;
+  /* height: 20px; */
+}
+.content{
+  display: flex;
+  max-width: 400px;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  margin: 0 70px;
+}
+.temp{
+  margin: 10px;
+}
+.button{
+color: white !important;
+background-color: black;
+padding: 20px !important;
+cursor: pointer;
+}
+::ng-deep  .mat-mdc-form-field-flex {
+
+    height: 45px !important;}
+::ng-deep .mat-mdc-text-field-wrapper {
+  height: 80px;
+  top: 20px;
+  font-size: 14px !important;
+}
+
+::ng-deep .mat-mdc-form-field {
+  height: 65px;
+}
+
+::ng-deep .mat-mdc-form-field-infix {
+  padding: 10px 0 0 0!important;
+}
+::ng-deep .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+    /* top: calc(var(--mat-form-field-container-height) / 2); */
+    top: 20px !important;
+  font-size: 13px !important;}

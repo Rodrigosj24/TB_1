@@ -1,0 +1,17 @@
+.modalContent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.errorIcon{
+  color: #F4150F;
+  font-size: 50px;
+  padding: 30px;
+}
+
+.btnError{
+  background-color: #F4150F;
+  color:#ffffff;
+  padding: 15px;
+}

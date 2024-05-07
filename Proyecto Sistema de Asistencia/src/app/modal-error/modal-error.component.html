@@ -1,0 +1,21 @@
+<div class="p-20 modalContent">
+  <mat-icon class="errorIcon">error</mat-icon>
+  <h1 mat-dialog-title>Error</h1>
+  @if (!data.info) {<h2 mat-dialog-content style="text-align:center" [innerHTML]="procesarTexto(data)"></h2>
+  }
+  @if (data.info === 'userError') {<div class="m-3">
+    <h3>
+      {{data.msgError}}:
+    </h3>
+    @for (item of data.msgItems; track $index) {<p class="ml-2">
+      - {{item}}
+    </p>}
+
+  </div>}
+
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="close()"
+      class="border-none fw-semibold ps-30 pe-30 pt-12 pb-12 cursor-pointer btnError">Cerrar</button>
+  </div>
+</div>

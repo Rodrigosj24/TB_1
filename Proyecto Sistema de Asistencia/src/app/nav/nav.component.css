@@ -1,0 +1,43 @@
+.containerg{
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.nav{
+  background-color: black;
+  color: white;
+  display: flex;
+      justify-content: space-between;
+
+    align-items: center;
+
+}
+.botones{
+    display: flex;
+    padding: 8px;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #466079;
+
+}
+.matButton{
+padding:0 60px;
+letter-spacing: -0.3px;
+
+}
+.title-footer{
+  display: flex;
+  flex-direction: column;
+}
+.footer{
+  position: absolute;
+  bottom: 0;
+  font-size: 11px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 11vh;
+    width: 100%;}
